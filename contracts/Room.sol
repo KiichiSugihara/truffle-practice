@@ -4,8 +4,9 @@ pragma solidity ^0.5.10;
 
 import "../node_modules/openzeppelin-solidity/contracts/lifecycle/Pausable.sol";
 import "../node_modules/openzeppelin-solidity/contracts/lifecycle/Destructible.sol";
+import "./Activatable.sol";
 
-contract Room is Destructible, Pausable {
+contract Room is Destructible, Pausable, Activatable {
 
     //状態変数 rewardSent
     mapping(uint256 => bool) public rewardSent;
@@ -48,7 +49,7 @@ contract Room is Destructible, Pausable {
         emit RewardSent(_dest, _reward, _id);
     }
 
-    function refundToOwner() external onlyOwner {
+    function refundToOwner() external whenNotActive onlyOwner {
         require(address(this).balance > 0, "refund is 0");
 
         uint256 refundedBalance = address(this).balance;
