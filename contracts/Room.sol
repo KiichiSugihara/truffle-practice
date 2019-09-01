@@ -1,6 +1,6 @@
 // Contract: express a room
 
-pragma solidity ^0.5.10;
+pragma solidity >=0.4.21 <0.6.0;
 
 import "../node_modules/openzeppelin-solidity/contracts/lifecycle/Pausable.sol";
 import "../node_modules/openzeppelin-solidity/contracts/lifecycle/Destructible.sol";
